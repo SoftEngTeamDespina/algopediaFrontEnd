@@ -15,15 +15,18 @@ document.getElementById("newImp").onclick =function () {
 }
 
 document.getElementById("classSearch").onclick =function () {
-    location.href = "class.html";
+    // location.href = "class.html";
+    alert("Feature Coming Soon!")
 }
 
 document.getElementById("algoSearch").onclick =function () {
-    location.href = "algo.html";
+    // location.href = "algo.html";
+    alert("Feature Coming Soon!")
 }
 
 document.getElementById("impSearch").onclick =function () {
-    location.href = "imp.html";
+    // location.href = "imp.html";
+    alert("Feature Coming Soon!")
 }
 function get(){
     var xhr = new XMLHttpRequest();

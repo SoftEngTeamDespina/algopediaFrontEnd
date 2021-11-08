@@ -5,8 +5,9 @@ document.getElementById("del").onclick =function () {
     alert("Feature coming soon!")
 }
 document.getElementById("classSearch").onclick =function () {
-    data = get()
-    updatePage(data)
+    // data = get()
+    // updatePage(data)
+    alert("Feature Coming Soon!")
 }
 function get(){
     var xhr = new XMLHttpRequest();
