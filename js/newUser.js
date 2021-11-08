@@ -1,9 +1,7 @@
-document.getElementById("newUser").onclick = function () {
+document.getElementById("newUser").onclick = async function () {
     if (document.getElementById("user").value != "" && document.getElementById("pass").value != "") {
         if (document.getElementById("pass").value == document.getElementById("confirm").value) {
-            post()
-            alert("logged in");
-            location.href = "home.html";
+            await post()
         }
         else {
             alert("passwords dont match");
@@ -29,12 +27,23 @@ function stringToHash(string) {
     return hash;
 }
 
-function post(){
+async function post(){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/alphaUser/user", true);
+    var temp
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         username: document.getElementById("user").value,
         password: stringToHash(document.getElementById("pass").value).toString()
     }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.httpStatusCode == 200){
+            console.log("Valid User")
+            location.href = "home.html";
+        }
+        else{
+            alert("Invalid User")
+        }
+    }
     }

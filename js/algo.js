@@ -11,7 +11,7 @@ document.getElementById("algoSearch").onclick =function () {
 }
 function get(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/alphaUser/algorithm", true);
+    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         id: document.getElementById("algoID").value

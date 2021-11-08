@@ -17,7 +17,7 @@ document.getElementById("impSearch").onclick =function () {
 }
 function get(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/alphaUser/implementation", true);
+    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/implementation", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         id: document.getElementById("impID").value

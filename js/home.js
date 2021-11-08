@@ -1,5 +1,6 @@
-window.onload() = function(){
-    data = get()
+window.onload = async function(){
+    data = await fetchAll()
+    console.log(data)
     updatePage(data)
 }
 document.getElementById("newClass").onclick =function () {
@@ -28,18 +29,25 @@ document.getElementById("impSearch").onclick =function () {
     // location.href = "imp.html";
     alert("Feature Coming Soon!")
 }
-function get(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/alphaUser/classification/all", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send();
-    return xhr.responseText;
-    }
+
+async function fetchAll() {
+    const response = await fetch('https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/allClassifications');
+    const data = await response.json()
+    // waits until the request completes...
+    return data
+  }
 
 function updatePage(data){
-    realData = JSON.parse(data);
     div = document.getElementById("data")
-    var node = document.createElement('li');
-    div.appendChild(node)
-    node.appendChild(document.createTextNode('Scooter'))
+    for(let i = 0; i < data.clList.length; i++){
+        var node = document.createElement('ol');
+        node.innerHTML = data.clList[i].name
+        div.appendChild(node)
+        indented = node.appendChild(document.createElement("ul"))
+        for(let j = 0; j < data.clList[i].algorithms.length; j++){
+            var childNode = document.createElement('li')
+            childNode.innerHTML = data.clList[i].algorithms[j].name
+            indented.appendChild(childNode)
+        }
+    }
 }
