@@ -3,17 +3,17 @@ var fileByteArray = [];
     
 document.getElementById("newImp").onclick = async function () {
     console.log(document.getElementById("impFile").files[0])
-    console.log(document.getElementById("impFile").value)
-    console.log(document.getElementById("impFile"))
+    console.log(getAsByteArray(document.getElementById("impFile").files[0]));
     await post()
 }
-function post(){
+async function post(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/implementation", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    await getAsByteArray(document.getElementById("impFile").files[0])
     xhr.send(JSON.stringify({
         language: document.getElementById("lang").value,
-        code: document.getElementById("impFile").files[0],
+        code: fileByteArray,
         id: document.getElementById("id").value,
     }));
     xhr.onload = function(){
@@ -28,21 +28,20 @@ function post(){
     }
     }
 
-    async function uploadFile(){
-        var files = document.getElementById("impFile").files[0];
-        var reader = new FileReader();
-        reader.onload = processFile(files);
-        reader.readAsText(files);
-      }
+async function getAsByteArray(file) {
+    fileByteArray =  Uint8Array(await readFile(file))
+}
 
-      function processFile(theFile){
-        return function(e) { 
-          var theBytes = e.target.result; //.split('base64,')[1]; // use with uploadFile2
-          fileByteArray.push(theBytes);
-          var texts = ""
-          for (var i=0; i<fileByteArray.length; i++) {
-              texts += fileByteArray[i];
-          }
-          console.log(texts)
-        }
-    }
+function readFile(file) {
+    return new Promise((resolve, reject) => {
+        // Create file reader
+        let reader = new FileReader()
+
+        // Register event listeners
+        reader.addEventListener("loadend", e => resolve(e.target.result))
+        reader.addEventListener("error", reject)
+
+        // Read file
+        reader.readAsArrayBuffer(file)
+    })
+}
