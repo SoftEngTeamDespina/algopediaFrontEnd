@@ -1,14 +1,23 @@
-document.getElementById("newClass").onclick =function () {
-    post();
-    location.href = "class.html";
+document.getElementById("newClass").onclick = async function () {
+    await post();
 }
-function post(){
+async function post(){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/classification", true);
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/classification", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         name: document.getElementById("name").value,
         description: document.getElementById("desc").value,
-        superClassification: document.getElementById("parent").value
+        superClassification: null
     }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.httpStatusCode == 200){
+            console.log("Valid Classification")
+            // location.href = "home.html";
+        }
+        else{
+            alert("Invalid Classificiation")
+        }
+    }
     }
