@@ -1,7 +1,7 @@
 document.getElementById("newUser").onclick =function () {
-    alert("Feature Coming Soon!");
+    location.href = "newUser.html";
 }
 
 document.getElementById("login").onclick =function () {
-    location.href = "login.html";
+    alert("Feature Coming Soon!");
 }

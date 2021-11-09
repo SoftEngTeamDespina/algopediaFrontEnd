@@ -33,7 +33,6 @@ document.getElementById("impSearch").onclick =function () {
 async function fetchAll() {
     const response = await fetch('https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/allClassifications');
     const data = await response.json()
-    // waits until the request completes...
     return data
   }
 
@@ -48,6 +47,12 @@ function updatePage(data){
             var childNode = document.createElement('li')
             childNode.innerHTML = data.clList[i].algorithms[j].name
             indented.appendChild(childNode)
+            doubleIndented = indented.appendChild(document.createElement("ul"))
+            for(let k = 0; k < data.clList[i].algorithms[j].implementations.length; k++){
+                var childNode1 = document.createElement('li')
+                childNode1.innerHTML = data.clList[i].algorithms[j].implementations[k].language
+                doubleIndented.appendChild(childNode1)
+            }
         }
     }
 }

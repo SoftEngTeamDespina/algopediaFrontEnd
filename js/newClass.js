@@ -12,9 +12,9 @@ async function post(){
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
-        if(temp.httpStatusCode == 200){
+        if(temp.statusCode == 200){
             console.log("Valid Classification")
-            // location.href = "home.html";
+            location.href = "home.html";
         }
         else{
             alert("Invalid Classificiation")
