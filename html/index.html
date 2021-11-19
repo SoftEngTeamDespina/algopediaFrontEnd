@@ -8,17 +8,28 @@
 </head>
 
 <body>
-    <h1>Algopedia Home</h1>
+    <div>
+        <h1>Algopedia</h1>
+        <img src="../algopediaLogo.png" alt="Algopedia Logo">
+    </div>
 
-    <fieldset>
-        <legend>Login</legend>
-        <button id="login">
-            Exisiting User
-        </button>
-        <button id="newUser">
-            Create Account
-        </button>
-    </fieldset>
+    <form onsubmit="myFunction(event)">
+        <fieldset>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit" name="registerUser">Register User</button>
+                <button type="submit" name="login">Login</button>
+            </div>
+            <div>
+                <button type="submit" name="continueAsUser">Continue as guest</button>
+            </div>
+        </fieldset>
+    </form>
 </body>
 <script src="../js/index.js"></script>
 
