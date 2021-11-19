@@ -13,7 +13,7 @@
         <img src="../algopediaLogo.png" alt="Algopedia Logo">
     </div>
 
-    <form onsubmit="myFunction(event)">
+    <form>
         <fieldset>
             <div>
                 <label for="username">Username</label>
@@ -22,7 +22,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div>
-                <button type="submit" name="registerUser">Register User</button>
+                <button type="submit" onsubmit="registerUser(event)" name="registerUser">Register User</button>
                 <button type="submit" name="login">Login</button>
             </div>
             <div>
