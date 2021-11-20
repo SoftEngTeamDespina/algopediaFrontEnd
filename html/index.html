@@ -14,21 +14,19 @@
     </div>
 
     <form>
-        <fieldset>
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <button type="submit" onsubmit="registerUser(event)" name="registerUser">Register User</button>
-                <button type="submit" name="login">Login</button>
-            </div>
-            <div>
-                <button type="submit" name="continueAsUser">Continue as guest</button>
-            </div>
-        </fieldset>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+        </div>
+        <div>
+            <button onclick="registerUser(event)">Register User</button>
+            <button onclick="login(event)">Login</button>
+        </div>
+        <div>
+            <button onclick="continueAsGuest(event)">Continue as guest</button>
+        </div>
     </form>
 </body>
 <script src="../js/index.js"></script>
