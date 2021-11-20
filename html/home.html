@@ -4,57 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Algopedia</title>
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="shortcut icon" type="image/png" href="../algopediaLogo.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h1>Algopedia Home</h1>
-    <img src="../algopediaLogo.png" alt="Algopedia Logo">
-    <fieldset>
-        <legend>Classification</legend>
-        <button id="newClass">
-            Create Classification
-        </button>
-        <p>
-            <label>Classification ID</label>
-            <input type="text" id="classID" />
-            <button id="classSearch">
-                Find Classification
-            </button>
-        </p>
-    </fieldset>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home.html">ALGOPEDIA</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="newClass.html">New Classification</a></li>
+            <li><a href="newAlgo.html">New Algorithm</a></li>
+            <li><a href="newImp.html">New Implementation</a></li>
+            <li><a href="#">New Problem Instance</a></li>
+            <li><a href="#">New Benchmark</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
 
-    <fieldset>
-        <legend>Algorithm</legend>
-        <button id="newAlgo">
-            Create Algorithm
-        </button>
-        <p>
-            <label>Algorithm ID</label>
-            <input type="text" id="algoID" />
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../algopediaLogo.png">
+            </div>
+            
+            <h2>Algopedia</h2>
+            <h3>Catalog</h3>
+            <div id = "data"></div>
+        </div>
+        <div class="main_content">
+            <h1>Welcome to Algopedia</h1>
+            <h4>The free algorithm encyclopedia that anyone can contribute to!</h4>
+            <div class="header">Welcome!! This website was created by Team Despina.</div>  
+            <div class="info">
+                <div class="iterationnum">Currently developing Iteration 2.</div>
+                <div> In this new iteration we have added functionality to remove...</div>
+          </div>
+        </div>
+    </div>
 
-            <button id="algoSearch">
-                Find Algorithm
-            </button>
-        </p>
-    </fieldset>
-
-    <fieldset>
-        <legend>Implementation</legend>
-        <button id="newImp">
-            Create Implementation
-        </button>
-        <p>
-            <label>Implementation ID</label>
-            <input type="text" id="impID" />
-
-            <button id="impSearch">
-                Find Implementation
-            </button>
-        </p>
-    </fieldset>
-
-    <div id = "data"></div>
 </body>
 <script src="../js/home.js"></script>
 

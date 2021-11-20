@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+
+.wrapper{
+    display: flex;
+    position: relative;
+  }
+  
+.wrapper .sidebar{
+    width: 350px;
+    height: 100%;
+    background: #ffffff;
+    border-style: solid;
+    border-color: white;
+    border-right-color: rgb(35, 41, 51);
+    border-right-width: 5px;
+    padding: 30px 0px;
+    position: fixed;
+  }
+  
+.wrapper .sidebar h2{
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+.wrapper .sidebar h3{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+.wrapper .sidebar .logo{
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    padding: 3px;
+    position: relative;
+  }
+  
+  .wrapper .main_content{
+    width: 100%;
+    margin-left: 350px;
+    padding: 5px;
+  }
+
+  .wrapper .main_content h1{
+    width: 100%;
+    font-size: 100px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .wrapper .main_content h4{
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .wrapper .main_content .header{
+    padding: 20px;
+    background: #fff;
+    color: #717171;
+    border-bottom: 1px solid #e0e4e8;
+  }
+  
+  .wrapper .main_content .info{
+    margin: 20px;
+    color: #717171;
+    line-height: 25px;
+  }
+  
+  .wrapper .main_content .info div{
+    margin-bottom: 20px;
+  }

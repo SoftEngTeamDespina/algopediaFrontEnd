@@ -4,29 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Algorithm</title>
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="shortcut icon" type="image/png" href="../algopediaLogo.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h1>Register New Algorithm</h1>
-    <fieldset>
-        <legend>New Algorithm</legend>
-        <p>
-            <label>Name</label>
-            <input type="text" id="name" />
-        </p>
-        <p>
-            <label>Description</label>
-            <input type="text" id="desc" />
-        </p>
-        <p>
-            <label>Classification ID</label>
-            <input type="text" id="class" />
-        </p>
-        <button id="newAlgo">
-            Create Algorithm
-        </button>
-    </fieldset>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home.html">ALGOPEDIA</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li ><a href="home.html">Home</a></li>
+            <li><a href="newClass.html">New Classification</a></li>
+            <li class="active"><a href="newAlgo.html">New Algorithm</a></li>
+            <li><a href="newImp.html">New Implementation</a></li>
+            <li><a href="#">New Problem Instance</a></li>
+            <li><a href="#">New Benchmark</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../algopediaLogo.png">
+            </div>
+            
+            <h2>Algopedia</h2>
+            <h3>Catalog</h3>
+            <div id = "data"></div>
+        </div>
+        <div class="main_content">
+            <h2>New Algorithm</h2>
+            <fieldset>
+                <legend>New Algorithm</legend>
+                <p>
+                    <label>Name</label>
+                    <input type="text" id="name" />
+                </p>
+                <p>
+                    <label>Description</label>
+                    <input type="text" id="desc" />
+                </p>
+                <p>
+                    <label>Classification ID</label>
+                    <input type="text" id="class" />
+                </p>
+                <button id="newAlgo">
+                    Create Algorithm
+                </button>
+            </fieldset>
+        </div>
+    </div>
+
 </body>
 <script src="../js/newAlgo.js"></script>
 
