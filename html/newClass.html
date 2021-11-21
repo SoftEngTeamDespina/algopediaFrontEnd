@@ -4,29 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Classification</title>
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="shortcut icon" type="image/png" href="../algopediaLogo.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h1>Create Classification</h1>
-    <fieldset>
-        <legend>New Classification</legend>
-        <p>
-            <label>Name</label>
-            <input type="text" id="name" />
-        </p>
-        <p>
-            <label>Description</label>
-            <input type="text" id="desc" />
-        </p>
-        <!-- <p>
-            <label>Parent Classification ID (optional)</label>
-            <input type="text" id="parent" />
-        </p> -->
-        <button id="newClass">
-            Create Classification
-        </button>
-    </fieldset>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home.html">ALGOPEDIA</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="newClass.html">New Classification</a></li>
+            <li><a href="newAlgo.html">New Algorithm</a></li>
+            <li><a href="newImp.html">New Implementation</a></li>
+            <li><a href="newProbInst.html">New Problem Instance</a></li>
+            <li><a href="newBenchmark.html">New Benchmark</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="wrapper">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../algopediaLogo.png">
+            </div>
+            
+            <h2>Algopedia</h2>
+            <h3>Catalog</h3>
+            <div id = "data"></div>
+        </div>
+        <div class="main_content">
+            <h2>Create Classification</h2>
+            <form>
+                <legend>New Classification</legend>
+                <p>
+                    <label>Name</label>
+                    <input type="text" id="name" />
+                </p>
+                <p>
+                    <label>Description</label>
+                    <input type="text" id="desc" />
+                </p>
+                <!-- <p>
+                    <label>Parent Classification ID (optional)</label>
+                    <input type="text" id="parent" />
+                </p> -->
+                <button id="newClass">
+                    Create Classification
+                </button>
+            </form>
+        </div>
+    </div>  
+
 </body>
 <script src="../js/newClass.js"></script>
 </html>
