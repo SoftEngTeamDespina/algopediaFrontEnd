@@ -2,62 +2,44 @@ const storage = window.sessionStorage;
 
 window.onload = async function(){
     data = await fetchAll();
-    console.log(data);
     updatePage(data);
+    addToLocalStorage(data);
 }
-document.getElementById("newClass").onclick =function () {
-    location.href = "newClass.html";
-}
-
-document.getElementById("newAlgo").onclick =function () {
-    location.href = "newAlgo.html";
-}
-
-document.getElementById("newImp").onclick =function () {
-    location.href = "newImp.html";
-}
-
-document.getElementById("classSearch").onclick =function () {
-    // location.href = "class.html";
-    alert("Feature Coming Soon!")
-}
-
-document.getElementById("algoSearch").onclick =function () {
-    // location.href = "algo.html";
-    alert("Feature Coming Soon!")
-}
-
-document.getElementById("impSearch").onclick =function () {
-    // location.href = "imp.html";
-    alert("Feature Coming Soon!")
-}
-
-// document.getElementById("newInst").onclick =function () {
-//     alert("Feature Coming Soon!")
-// }
 
 async function fetchAll() {
     const response = await fetch('https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/allClassifications');
-    const data = await response.json()
-    return data
-  }
-
-function comingSoon(){
-    alert("Feature Coming Soon!")
+    const data = await response.json();
+    return data;
 }
 
-function updatePage(data){
+function addToLocalStorage(data) {
+    storage.catalog = JSON.stringify(data);
+}
+
+function updatePage(data) {
     div = document.getElementById("data")
-    for(let i = 0; i < data.clList.length; i++){
-        var node = document.createElement('ol');
-        node.innerHTML = data.clList[i].name
-        div.appendChild(node)
-        indented = node.appendChild(document.createElement("ul"))
-        for(let j = 0; j < data.clList[i].algorithms.length; j++){
-            var childNode = document.createElement('li')
-            childNode.innerHTML = data.clList[i].algorithms[j].name
-            indented.appendChild(childNode)
-            
-        }
+    data.clList.forEach(element => {
+        createCatalog(div, element);
+    });
+}
+
+function createCatalog(div, element) {
+    var node = document.createElement('ol');
+    node.innerHTML = element.name;
+    div.appendChild(node);
+    indented = node.appendChild(document.createElement("ul"));
+    element.algorithms.forEach(algorithm => {
+        createAlgorithmInCatalog(algorithm, indented);
+    })
+}
+
+function createAlgorithmInCatalog(algorithm, indented) {
+    var childNode = document.createElement('li');
+    childNode.innerHTML = algorithm.name;
+    childNode.style.cursor = "pointer";
+    childNode.onclick = function() {
+        storage.selectedAlgorithm = algorithm.algorithmID;
+        location.href = "algorithm.html";
     }
+    indented.appendChild(childNode);
 }
