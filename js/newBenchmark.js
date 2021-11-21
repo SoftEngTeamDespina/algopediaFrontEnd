@@ -81,8 +81,7 @@ function post(){
 
 
 function checkIfAnnonymous(){
-    
-    if(storage.username !== null){
+    if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
     }
 }

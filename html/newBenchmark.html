@@ -45,26 +45,26 @@
             <h2>New Benchmark</h2>
             <form>
                 <label for="algorithm">Algorithm:</label>
-                <select id="algorithm" name="algorithm" required></select><br>
+                <select id="algorithm" required></select><br>
                 <label for="problemInstance">Probem Instance:</label>
-                <select id="problemInstance" name="problemInstance" required></select><br>
+                <select id="problemInstance" name="problemInstance"></select><br>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br>
+                <input type="text" id="name" required><br>
                 <label for="cpu">CPU:</label>
-                <input type="text" id="cpu" name="cpu" required><br>
+                <input type="text" id="cpu" required><br>
                 <label for="cores"># of Cores:</label>
-                <input type="text" id="cores" name="cores" required><br>
+                <input type="text" id="cores" required><br>
                 <label for="threads"># of Threads:</label>
-                <input type="text" name="threads" id="threads" required><br>
+                <input type="text" id="threads" required><br>
                 <label for="l1">L1:</label>
-                <input type="text" name="l1" id="l1" required><br>
+                <input type="text" id="l1" required><br>
                 <label for="l2">L2:</label>
-                <input type="text" name="l2" id="l2" required><br>
+                <input type="text" id="l2" required><br>
                 <label for="l3">L3:</label>
-                <input type="text" name="l3" id="l3" required><br>
+                <input type="text" id="l3" required><br>
                 <label for="runtime">Runtime:</label>
-                <input type="text" name="runtime" id="runtime" required><br>
-                <input type="submit" value="submit">
+                <input type="text" id="runtime" required><br>
+                <button onclick="createNewBenchmark(event)">Submit</button>
             </form>
         </div>
     </div>
