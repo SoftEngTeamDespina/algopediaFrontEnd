@@ -2,8 +2,7 @@ const storage = window.sessionStorage;
 
 window.onload = function() {
     catalog = JSON.parse(storage.catalog);
-    console.log(storage.selectedAlgorithm);
-    algorithm = storage.selectedAlgorithm;
+    algorithm = JSON.parse(storage.selectedAlgorithm);
     if (catalog !== undefined) {
         updatePage(catalog);
     }
@@ -16,6 +15,20 @@ window.onload = function() {
 function displayAlgorithm(algorithm) {
     var title = document.getElementById("algorithmName");
     title.innerHTML = algorithm.name;
+    createImplementations(algorithm);
+}
+
+function createImplementations(algorithm) {
+    div = document.getElementById("implementations")
+    algorithm.implementations.forEach(element => {
+        var node = document.createElement('ul');
+        node.innerHTML = element.filename;
+        node.style.cursor = "pointer";
+        node.onclick = function() {
+            alert("Get file");
+        }
+        div.appendChild(node);
+    });
 }
 
 function updatePage(data) {
@@ -45,8 +58,6 @@ function createAlgorithmInCatalog(algorithm, indented) {
     }
     indented.appendChild(childNode);
 }
-
-
 
 // function get(){
 //     var xhr = new XMLHttpRequest();
