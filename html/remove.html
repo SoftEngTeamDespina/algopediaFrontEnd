@@ -46,6 +46,17 @@
         <div class="main_content">
             <form>
                 <legend>Remove</legend>
+                <label for="selectCategory">Select Category</label>
+                <select onchange="updateItems()" id="selectCategory">
+                  <option value="classification">Classification</option>
+                  <option value="algorithm">Algorithm</option>
+                  <option value="implementation">Implementation</option>
+                  <option value="problemInstance">Problem Instance</option>
+                  <option value="benchmark">Benchmark</option>
+                </select><br>
+                <label for="selectItem">Select Item</label>
+                <select id="selectItem"></select><br>
+                <button onclick="remove()">Remove</button>
             </form>
         </div>
     </div>
