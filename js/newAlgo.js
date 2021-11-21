@@ -51,6 +51,7 @@ function createAlgorithmInCatalog(algorithm, indented) {
 document.getElementById("newAlgo").onclick =async function () {
     await post()
 }
+
 function post(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
