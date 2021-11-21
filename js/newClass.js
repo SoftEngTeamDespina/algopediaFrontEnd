@@ -2,6 +2,7 @@ const storage = window.sessionStorage;
 
 window.onload = function() {
     catalog = JSON.parse(storage.catalog);
+    checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
     }
@@ -59,4 +60,11 @@ async function post(){
             alert("Invalid Classificiation")
         }
     }
+    }
+
+    function checkIfAnnonymous(){
+    
+        if(storage.username !== undefined){
+            document.getElementById("login").style.visibility="hidden"
+        }
     }

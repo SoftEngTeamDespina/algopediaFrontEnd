@@ -2,6 +2,7 @@ const storage = window.sessionStorage;
 
 window.onload = function() {
     catalog = JSON.parse(storage.catalog);
+    checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
     }
@@ -94,4 +95,11 @@ function fileToByteArray(file) {
             reject(e);
         } 
     })
+}
+
+function checkIfAnnonymous(){
+    
+    if(storage.username !== undefined){
+        document.getElementById("login").style.visibility="hidden"
+    }
 }
