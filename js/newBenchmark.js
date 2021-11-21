@@ -55,7 +55,7 @@ function createNewBenchmark(e) {
 
 function checkIfAnnonymous(){
     
-    if(storage.username !== undefined){
+    if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
     }
 }
