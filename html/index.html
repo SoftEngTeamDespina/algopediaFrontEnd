@@ -4,20 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Algopedia</title>
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="shortcut icon" type="image/png" href="../algopediaLogo.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div>
+    <div class="wrapper">
+    <div class="main">
+    <div class="logo">
         <h1>Algopedia</h1>
         <img src="../algopediaLogo.png" alt="Algopedia Logo">
     </div>
 
     <form>
         <div>
-            <label for="username">Username</label>
+            <label for="username">Username: </label>
             <input type="text" id="username" required>
-            <label for="password">Password</label>
+            <label for="password">Password: </label>
             <input type="password" id="password" required>
         </div>
         <div>
@@ -28,6 +34,8 @@
             <button onclick="continueAsGuest(event)">Continue as guest</button>
         </div>
     </form>
+</div>
+</div>
 </body>
 <script src="../js/index.js"></script>
 
