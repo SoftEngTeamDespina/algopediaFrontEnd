@@ -1,4 +1,5 @@
 const storage = window.sessionStorage;
+var algorithms = []
 
 window.onload = function() {
     catalog = JSON.parse(storage.catalog);
@@ -6,6 +7,7 @@ window.onload = function() {
     if (catalog !== undefined) {
         updatePage(catalog);
         addAlgorithms(catalog);
+        changeImplementations();
     }
 }
 
@@ -13,13 +15,35 @@ function addAlgorithms(catalog) {
     select = document.getElementById("algorithm");
     catalog.clList.forEach(element => {
         element.algorithms.forEach(algorithm => {
+            algorithms.push(algorithm);
             var opt = document.createElement('option');
             opt.value = algorithm.algorithmID;
             opt.innerHTML = algorithm.name;
             select.appendChild(opt);
         })
     });
+    console.log(algorithms);
 }
+
+function changeImplementations() {
+    var select = document.getElementById("implementation");
+    var algorithm = document.getElementById("algorithm");
+    removeOptions(select);
+    var newAlgorithm = algorithms.find(element => element.algorithmID === algorithm.value);
+    newAlgorithm.implementations.forEach(implementation => {
+        var opt = document.createElement('option');
+        opt.value = implementation.implementationID;
+        opt.innerHTML = implementation.filename;
+        select.appendChild(opt);
+    })
+}
+
+function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for(i = L; i >= 0; i--) {
+       selectElement.remove(i);
+    }
+ }
 
 function updatePage(data) {
     div = document.getElementById("data")
