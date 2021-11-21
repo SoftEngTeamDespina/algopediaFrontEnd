@@ -45,7 +45,9 @@
             <h2>New Benchmark</h2>
             <form>
                 <label for="algorithm">Algorithm:</label>
-                <select id="algorithm" required></select><br>
+                <select onchange="changeImplementations()" id="algorithm" required></select><br>
+                <label for="implementation">Implementation:</label>
+                <select id="implementation" required></select><br>
                 <label for="problemInstance">Probem Instance:</label>
                 <select id="problemInstance" name="problemInstance"></select><br>
                 <label for="name">Name:</label>
