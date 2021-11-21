@@ -47,3 +47,7 @@ function createAlgorithmInCatalog(algorithm, indented) {
     }
     indented.appendChild(childNode);
 }
+
+function createNewBenchmark(e) {
+    e.preventDefault();
+}

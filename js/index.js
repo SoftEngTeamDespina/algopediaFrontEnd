@@ -31,7 +31,7 @@ function login(e) {
 
 function continueAsGuest(e) {
     e.preventDefault();
-    storage.username = undefined;
+    storage.username = null;
     location.href = "home.html";
 }
 
