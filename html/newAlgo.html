@@ -22,8 +22,8 @@
             <li><a href="newClass.html">New Classification</a></li>
             <li class="active"><a href="newAlgo.html">New Algorithm</a></li>
             <li><a href="newImp.html">New Implementation</a></li>
-            <li><a href="#">New Problem Instance</a></li>
-            <li><a href="#">New Benchmark</a></li>
+            <li><a href="newProbInst.html">New Problem Instance</a></li>
+            <li><a href="newBenchmark.html">New Benchmark</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
@@ -44,7 +44,7 @@
         </div>
         <div class="main_content">
             <h2>New Algorithm</h2>
-            <fieldset>
+            <form>
                 <legend>New Algorithm</legend>
                 <p>
                     <label>Name</label>
@@ -55,13 +55,13 @@
                     <input type="text" id="desc" />
                 </p>
                 <p>
-                    <label>Classification ID</label>
-                    <input type="text" id="class" />
+                    <label>Classification</label>
+                    <select id="class"></select>
                 </p>
                 <button id="newAlgo">
                     Create Algorithm
                 </button>
-            </fieldset>
+            </form>
         </div>
     </div>
 

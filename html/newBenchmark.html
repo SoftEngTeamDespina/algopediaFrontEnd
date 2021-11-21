@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Algopedia</title>
+    <title>Create Benchmark</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="shortcut icon" type="image/png" href="../algopediaLogo.png"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -18,12 +18,12 @@
             <a class="navbar-brand" href="home.html">ALGOPEDIA</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="home.html">Home</a></li>
+            <li ><a href="home.html">Home</a></li>
             <li><a href="newClass.html">New Classification</a></li>
             <li><a href="newAlgo.html">New Algorithm</a></li>
             <li><a href="newImp.html">New Implementation</a></li>
             <li><a href="newProbInst.html">New Problem Instance</a></li>
-            <li><a href="newBenchmark.html">New Benchmark</a></li>
+            <li class="active"><a href="newBenchmark.html">New Benchmark</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
@@ -32,8 +32,7 @@
           </ul>
         </div>
       </nav>
-
-    <div class="wrapper">
+      <div class="wrapper">
         <div class="sidebar">
             <div class="logo">
                 <img src="../algopediaLogo.png">
@@ -44,17 +43,32 @@
             <div id = "data"></div>
         </div>
         <div class="main_content">
-            <h1>Welcome to Algopedia</h1>
-            <h4>The free algorithm encyclopedia that anyone can contribute to!</h4>
-            <div class="header">Welcome!! This website was created by Team Despina.</div>  
-            <div class="info">
-                <div class="iterationnum">Currently developing Iteration 2.</div>
-                <div> In this new iteration we have added functionality to remove...</div>
-          </div>
+            <h2>New Benchmark</h2>
+            <form>
+                <label for="algorithm">Algorithm:</label>
+                <select id="algorithm" name="algorithm" required></select><br>
+                <label for="problemInstance">Probem Instance:</label>
+                <select id="problemInstance" name="problemInstance" required></select><br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="cpu">CPU:</label>
+                <input type="text" id="cpu" name="cpu" required><br>
+                <label for="cores"># of Cores:</label>
+                <input type="text" id="cores" name="cores" required><br>
+                <label for="threads"># of Threads:</label>
+                <input type="text" name="threads" id="threads" required><br>
+                <label for="l1">L1:</label>
+                <input type="text" name="l1" id="l1" required><br>
+                <label for="l2">L2:</label>
+                <input type="text" name="l2" id="l2" required><br>
+                <label for="l3">L3:</label>
+                <input type="text" name="l3" id="l3" required><br>
+                <input type="submit" value="submit">
+            </form>
         </div>
     </div>
 
 </body>
-<script src="../js/home.js"></script>
+
 
 </html>
