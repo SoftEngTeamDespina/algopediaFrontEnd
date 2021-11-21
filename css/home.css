@@ -75,3 +75,29 @@
   .wrapper .main_content .info div{
     margin-bottom: 20px;
   }
+
+    
+  .wrapper .main{
+    width: 100%;
+    padding: 20px;
+  }
+  .wrapper .main form{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .wrapper .main input{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .wrapper .main button{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-right: 30px;
+  }
+
+  .wrapper .main .logo{
+    text-align: center;
+    margin-bottom: 30px;
+  }
