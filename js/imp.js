@@ -30,3 +30,10 @@ function updatePage(data){
     document.getElementById("lang").innerHTML = realData.language;
     document.getElementById("down").innerHTML = realData.code;
 }
+
+function checkIfAnnonymous(){
+    
+    if(storage.username !== undefined){
+        document.getElementById("login").style.visibility="hidden"
+    }
+}

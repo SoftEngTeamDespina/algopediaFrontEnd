@@ -2,6 +2,7 @@ const storage = window.sessionStorage;
 
 window.onload = function() {
     catalog = JSON.parse(storage.catalog);
+    checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
         addAlgorithms(catalog);
@@ -50,4 +51,11 @@ function createAlgorithmInCatalog(algorithm, indented) {
 
 function createNewBenchmark(e) {
     e.preventDefault();
+}
+
+function checkIfAnnonymous(){
+    
+    if(storage.username !== undefined){
+        document.getElementById("login").style.visibility="hidden"
+    }
 }

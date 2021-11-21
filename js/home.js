@@ -2,6 +2,7 @@ const storage = window.sessionStorage;
 
 window.onload = async function(){
     data = await fetchAll();
+    checkIfAnnonymous();
     updatePage(data);
     console.log(data);
     addToLocalStorage(data);
@@ -43,4 +44,11 @@ function createAlgorithmInCatalog(algorithm, indented) {
         location.href = "algorithm.html";
     }
     indented.appendChild(childNode);
+}
+
+function checkIfAnnonymous(){
+    
+    if(storage.username !== undefined){
+        document.getElementById("login").style.visibility="hidden"
+    }
 }
