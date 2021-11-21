@@ -1,7 +1,9 @@
+const storage = window.sessionStorage;
+
 window.onload = async function(){
-    data = await fetchAll()
-    console.log(data)
-    updatePage(data)
+    data = await fetchAll();
+    console.log(data);
+    updatePage(data);
 }
 document.getElementById("newClass").onclick =function () {
     location.href = "newClass.html";
@@ -30,9 +32,9 @@ document.getElementById("impSearch").onclick =function () {
     alert("Feature Coming Soon!")
 }
 
-document.getElementById("newInst").onclick =function () {
-    alert("Feature Coming Soon!")
-}
+// document.getElementById("newInst").onclick =function () {
+//     alert("Feature Coming Soon!")
+// }
 
 async function fetchAll() {
     const response = await fetch('https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/allClassifications');

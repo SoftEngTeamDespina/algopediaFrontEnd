@@ -8,17 +8,26 @@
 </head>
 
 <body>
-    <h1>Algopedia Home</h1>
+    <div>
+        <h1>Algopedia</h1>
+        <img src="../algopediaLogo.png" alt="Algopedia Logo">
+    </div>
 
-    <fieldset>
-        <legend>Login</legend>
-        <button id="login">
-            Exisiting User
-        </button>
-        <button id="newUser">
-            Create Account
-        </button>
-    </fieldset>
+    <form>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+        </div>
+        <div>
+            <button onclick="registerUser(event)">Register User</button>
+            <button onclick="login(event)">Login</button>
+        </div>
+        <div>
+            <button onclick="continueAsGuest(event)">Continue as guest</button>
+        </div>
+    </form>
 </body>
 <script src="../js/index.js"></script>
 
