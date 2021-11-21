@@ -5,7 +5,19 @@ window.onload = function() {
     checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
+        console.log(catalog);
+        updateClassification(catalog);
     }
+}
+
+function updateClassification(catalog) {
+    select = document.getElementById("class");
+    catalog.clList.forEach(element => {
+        var opt = document.createElement('option');
+        opt.value = element.classificationID;
+        opt.innerHTML = element.name;
+        select.appendChild(opt);
+    });
 }
 
 function updatePage(data) {

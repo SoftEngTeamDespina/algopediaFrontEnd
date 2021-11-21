@@ -5,7 +5,20 @@ window.onload = function() {
     checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
+        addAlgorithms(catalog);
     }
+}
+
+function addAlgorithms(catalog) {
+    select = document.getElementById("algorithm");
+    catalog.clList.forEach(element => {
+        element.algorithms.forEach(algorithm => {
+            var opt = document.createElement('option');
+            opt.value = algorithm.algorithmID;
+            opt.innerHTML = algorithm.name;
+            select.appendChild(opt);
+        })
+    });
 }
 
 function updatePage(data) {

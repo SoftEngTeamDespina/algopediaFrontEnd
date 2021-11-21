@@ -31,7 +31,8 @@ function login(e) {
 
 function continueAsGuest(e) {
     e.preventDefault();
-    alert("feature coming soon");
+    storage.username = undefined;
+    location.href = "home.html";
 }
 
 function stringToHash(string) {
