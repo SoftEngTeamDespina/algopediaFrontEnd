@@ -29,7 +29,7 @@ function createAlgorithmInCatalog(algorithm, indented) {
     childNode.innerHTML = algorithm.name;
     childNode.style.cursor = "pointer";
     childNode.onclick = function() {
-        storage.selectedAlgorithm = algorithm.algorithmID;
+        storage.selectedAlgorithm = JSON.stringify(algorithm);
         location.href = "algorithm.html";
     }
     indented.appendChild(childNode);

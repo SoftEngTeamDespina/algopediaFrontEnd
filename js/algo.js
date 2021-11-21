@@ -1,27 +1,66 @@
-document.getElementById("home").onclick =function () {
-    location.href = "home.html";
-}
-document.getElementById("del").onclick =function () {
-    alert("Feature coming soon!")
-}
-document.getElementById("algoSearch").onclick =function () {
-    // data = get()
-    // updatePage(data)
-    alert("Feature Coming Soon!")
-}
-function get(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        id: document.getElementById("algoID").value
-    }));
-    return xhr.responseText;
+const storage = window.sessionStorage;
+
+window.onload = function() {
+    catalog = JSON.parse(storage.catalog);
+    console.log(storage.selectedAlgorithm);
+    algorithm = storage.selectedAlgorithm;
+    if (catalog !== undefined) {
+        updatePage(catalog);
     }
 
-function updatePage(data){
-    realData = JSON.parse(data);
-    document.getElementById("name").innerHTML = realData.name;
-    document.getElementById("desc").innerHTML = realData.description;
-    document.getElementById("class").innerHTML = realData.classification;
+    if (algorithm !== undefined) {
+        displayAlgorithm(algorithm);
+    }
 }
+
+function displayAlgorithm(algorithm) {
+    var title = document.getElementById("algorithmName");
+    title.innerHTML = algorithm.name;
+}
+
+function updatePage(data) {
+    div = document.getElementById("data")
+    data.clList.forEach(element => {
+        createCatalog(div, element);
+    });
+}
+
+function createCatalog(div, element) {
+    var node = document.createElement('ol');
+    node.innerHTML = element.name;
+    div.appendChild(node);
+    indented = node.appendChild(document.createElement("ul"));
+    element.algorithms.forEach(algorithm => {
+        createAlgorithmInCatalog(algorithm, indented);
+    })
+}
+
+function createAlgorithmInCatalog(algorithm, indented) {
+    var childNode = document.createElement('li');
+    childNode.innerHTML = algorithm.name;
+    childNode.style.cursor = "pointer";
+    childNode.onclick = function() {
+        storage.selectedAlgorithm = JSON.stringify(algorithm);
+        location.href = "algorithm.html";
+    }
+    indented.appendChild(childNode);
+}
+
+
+
+// function get(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.send(JSON.stringify({
+//         id: document.getElementById("algoID").value
+//     }));
+//     return xhr.responseText;
+//     }
+
+// function updatePage(data){
+//     realData = JSON.parse(data);
+//     document.getElementById("name").innerHTML = realData.name;
+//     document.getElementById("desc").innerHTML = realData.description;
+//     document.getElementById("class").innerHTML = realData.classification;
+// }
