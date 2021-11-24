@@ -25,6 +25,7 @@ async function registerUser(e) {
 }
 
 function login(e) {
+    e.preventDefault();
     var xhr = new XMLHttpRequest();
     var username = document.getElementById("username").value;
     var password = stringToHash(document.getElementById("password").value).toString();
