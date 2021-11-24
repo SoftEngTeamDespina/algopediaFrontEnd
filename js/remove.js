@@ -1,4 +1,5 @@
 const storage = window.sessionStorage;
+const apiUrl = 'https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/'
 var catalog;
 
 window.onload = async function(){
@@ -11,8 +12,69 @@ window.onload = async function(){
     }
 }
 
-function remove() {
-    alert("Coming soon!");
+function postRemove(url, json) {
+    var xhr = new XMLHttpRequest();
+    var temp;
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(json);
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response);
+        if(temp.httpStatusCode == 200) {
+            alert("Deleted");
+        }
+        else {
+            alert(temp.errorMessage);
+        }
+    }
+}
+
+function remove(e) {
+    e.preventDefault();
+    category = document.getElementById("selectCategory").value;
+    selectItem = document.getElementById("selectItem").value;
+    console.log(selectItem);
+    switch(category) {
+        case 'classification':
+            var url = apiUrl + '/classification/delete';
+            var json = {
+                'id': selectItem,
+                'user': storage.username
+            };
+            json = JSON.stringify(json);
+            postRemove(url, json);
+            break;
+        case 'algorithm':
+            var url = apiUrl + '/algorithm/delete';
+            var json = {
+                'id': selectItem,
+                'user': storage.username
+            };
+            json = JSON.stringify(json);
+            postRemove(url, json);
+            break;
+        case 'implementation':
+            var url = apiUrl + '/implementation/delete';
+            var json = {
+                'id': selectItem,
+                'user': storage.username
+            };
+            json = JSON.stringify(json);
+            postRemove(url, json);
+            break;
+        case 'problemInstance':
+            var url = apiUrl + '/probleminstance/delete';
+            var json = {
+                'id': selectItem,
+                'user': storage.username
+            };
+            json = JSON.stringify(json);
+            postRemove(url, json);
+            break;
+        case 'benchmark':
+            alert("Feature coming");
+            break;
+    }
 }
 
 function updateItems() {
