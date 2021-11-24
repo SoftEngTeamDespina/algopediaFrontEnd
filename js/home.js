@@ -4,7 +4,6 @@ window.onload = async function(){
     data = await fetchAll();
     checkIfAnnonymous();
     updatePage(data);
-    console.log(data);
     addToLocalStorage(data);
 }
 
