@@ -65,14 +65,14 @@ async function post(){
     await getByteArray()
     xhr.send(JSON.stringify({
         language: document.getElementById("lang").value,
-        code: toSend,
-        id: document.getElementById("algorithm").value,
+        code: JSON.stringify(toSend),
+        algorithm: document.getElementById("algorithm").value,
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
             console.log("Valid Implementation")
-            location.href = "home.html";
+            // location.href = "home.html";
         }
         else{
             alert("Invalid Implementation")
