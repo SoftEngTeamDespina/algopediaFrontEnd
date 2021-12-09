@@ -50,23 +50,23 @@ function createAlgorithmInCatalog(algorithm, indented) {
 }
 
 var toSend = [];
-    
-document.getElementById("newImp").onclick = async function () {
-    console.log(document.getElementById("impFile").files[0])
-    console.log(getByteArray(document.getElementById("impFile").files[0]));
-    await post()
-}
 
+function submitNewImp(e) {
+    e.preventDefault();
+    console.log(document.getElementById("impFile").files[0]);
+    console.log(getByteArray());
+    post();
+}
 
 async function post(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/implementation", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    await getByteArray(document.getElementById("impFile").files[0])
+    await getByteArray()
     xhr.send(JSON.stringify({
         language: document.getElementById("lang").value,
         code: toSend,
-        id: document.getElementById("id").value,
+        id: document.getElementById("algorithm").value,
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
