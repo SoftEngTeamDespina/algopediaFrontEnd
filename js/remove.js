@@ -8,8 +8,67 @@ window.onload = async function(){
         updatePage(catalog);
         updateItems();
         updateUsers();
+        addAlgorithms();
         console.log(catalog);
     }
+}
+
+function loadBenchmarks(algorithm) {
+    selectItem = document.getElementById("selectItem");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark/get", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        algorithm: algorithm
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response);
+        if(temp.statusCode == 200) {
+            if (temp.benchmarks !== undefined) {
+                temp.benchmarks.forEach(element => {
+                var option = document.createElement('option');
+                option.value = element.benchmarkID;
+                option.innerHTML = element.name;
+                selectItem.appendChild(option);
+                })
+            }
+        }
+    }
+}
+
+function getProbInstances(algorithm){
+    var select = document.getElementById("problemInstance");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance/all", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        algorithm: algorithm
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response);
+        if(temp.statusCode == 200) {
+            if (temp.instances !== undefined) {
+                temp.instances.forEach(element => {
+                var option = document.createElement('option');
+                option.value = element.problemInstanceID;
+                option.innerHTML = element.name;
+                selectItem.appendChild(option);
+                })
+            }
+        }
+    }
+}
+
+function addAlgorithms() {
+    let algorithmSelect = document.getElementById("algorithm");
+    catalog.clList.forEach(element => {
+        element.algorithms.forEach(algorithm => {
+            var option = document.createElement('option');
+            option.value = algorithm.name;
+            option.innerHTML = algorithm.name;
+            algorithmSelect.appendChild(option);
+        })
+    });
 }
 
 function remove() {
@@ -19,9 +78,12 @@ function remove() {
 function updateItems() {
     category = document.getElementById("selectCategory").value;
     selectItem = document.getElementById("selectItem");
+    let algorithmDiv = document.getElementById("algorithmDiv");
+    let algorithmSelect = document.getElementById("algorithm");
     removeOptions(selectItem);
     switch(category) {
         case 'classification':
+            algorithmDiv.hidden = true;
             catalog.clList.forEach(element => {
                 var option = document.createElement('option');
                 option.value = element.classificationID;
@@ -30,6 +92,7 @@ function updateItems() {
             });
             break;
         case 'algorithm':
+            algorithmDiv.hidden = true;
             catalog.clList.forEach(element => {
                 element.algorithms.forEach(algorithm => {
                     var option = document.createElement('option');
@@ -40,6 +103,7 @@ function updateItems() {
             });
             break;
         case 'implementation':
+            algorithmDiv.hidden = false;
             catalog.clList.forEach(element => {
                 element.algorithms.forEach(algorithm => {
                     algorithm.implementations.forEach(implementation => {
@@ -52,8 +116,12 @@ function updateItems() {
             });
             break;
         case 'problemInstance':
+            algorithmDiv.hidden = false;
+            getProbInstances(algorithmSelect.value);
             break;
         case 'benchmark':
+            algorithmDiv.hidden = false;
+            loadBenchmarks(algorithmSelect.value);
             break;
     }
 }

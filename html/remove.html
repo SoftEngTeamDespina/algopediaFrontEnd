@@ -54,6 +54,10 @@
                   <option value="problemInstance">Problem Instance</option>
                   <option value="benchmark">Benchmark</option>
                 </select><br>
+                <div hidden id="algorithmDiv">
+                  <label for="algorithm">Select Algorithm: </label>
+                  <select id="algorithm" onchange="updateItems()"></select><br>
+                </div>
                 <label for="selectItem">Select Item: </label>
                 <select id="selectItem"></select><br>
                 <button onclick="remove()">Remove</button>
