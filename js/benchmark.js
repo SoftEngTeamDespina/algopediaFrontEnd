@@ -54,22 +54,23 @@ function loadBenchmarks(){
             let i = 1
             for(const elmnt of temp.benchmarks){
                 var row = tbl.insertRow(i);
-                row.insertCell(0).innerHTML = elmnt.implementation.language
-                row.insertCell(1).innerHTML = elmnt.configuration.cores
-                row.insertCell(2).innerHTML = elmnt.configuration.cpu
-                row.insertCell(3).innerHTML = elmnt.configuration.threads
-                row.insertCell(4).innerHTML = elmnt.configuration.l1
-                row.insertCell(5).innerHTML = elmnt.configuration.l2
-                row.insertCell(6).innerHTML = elmnt.configuration.l3
-                row.insertCell(7).innerHTML = elmnt.date
-                row.insertCell(8).innerHTML = elmnt.runtime
-                row.insertCell(9).innerHTML = elmnt.instance.name
-                var btn = document.createElement('button')
-                btn.innerHTML = 'x'
-                btn.onclick = function() {
-                    deleteBenchmark(elmnt.benchmarkID);
-                }
-                row.insertCell(10).appendChild(btn)
+                row.insertCell(0).innerHTML = elmnt.name
+                row.insertCell(1).innerHTML = elmnt.implementation.language
+                row.insertCell(2).innerHTML = elmnt.configuration.cores
+                row.insertCell(3).innerHTML = elmnt.configuration.cpu
+                row.insertCell(4).innerHTML = elmnt.configuration.threads
+                row.insertCell(5).innerHTML = elmnt.configuration.l1
+                row.insertCell(6).innerHTML = elmnt.configuration.l2
+                row.insertCell(7).innerHTML = elmnt.configuration.l3
+                row.insertCell(8).innerHTML = elmnt.date
+                row.insertCell(9).innerHTML = elmnt.runtime
+                row.insertCell(10).innerHTML = elmnt.instance.name
+                // var btn = document.createElement('button')
+                // btn.innerHTML = 'x'
+                // btn.onclick = function() {
+                //     deleteBenchmark(elmnt.benchmarkID);
+                // }
+                // row.insertCell(10).appendChild(btn)
                 i++;
             }
         }
