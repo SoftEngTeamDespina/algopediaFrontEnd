@@ -58,7 +58,7 @@ function submitNewImp(e) {
     post();
 }
 
-async function post(){
+async function post() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/implementation", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -78,7 +78,7 @@ async function post(){
             alert("Invalid Implementation")
         }
     }
-    }
+}
 
 async function getByteArray() {
     let myFile = document.getElementById('impFile').files[0];
