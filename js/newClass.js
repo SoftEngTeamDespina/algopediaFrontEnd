@@ -1,10 +1,12 @@
 const storage = window.sessionStorage;
 
 window.onload = function() {
+
     catalog = JSON.parse(storage.catalog);
     checkIfAnnonymous()
     if (catalog !== undefined) {
         updatePage(catalog);
+        updateClassification(catalog);
     }
 }
 
@@ -34,6 +36,20 @@ function createAlgorithmInCatalog(algorithm, indented) {
         location.href = "algorithm.html";
     }
     indented.appendChild(childNode);
+}
+
+function updateClassification(catalog) {
+    select = document.getElementById("superClass");
+    var nullopt = document.createElement('option');
+    nullopt.value = null;
+    nullopt.innerHTML = '--';
+    select.appendChild(nullopt);
+    catalog.clList.forEach(element => {
+        var opt = document.createElement('option');
+        opt.value = element.classificationID;
+        opt.innerHTML = element.name;
+        select.appendChild(opt);
+    });
 }
 
 document.getElementById("newClass").onclick = async function () {
