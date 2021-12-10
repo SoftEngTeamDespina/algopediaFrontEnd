@@ -36,6 +36,40 @@ function changeImplementations() {
         opt.innerHTML = implementation.filename;
         select.appendChild(opt);
     })
+    getProbInstances();
+}
+
+function changeProblemInstance() {
+    var select = document.getElementById("problemInstance");
+    var algorithm = document.getElementById("algorithm");
+    removeOptions(select);
+
+}
+
+function getProbInstances(){
+    var select = document.getElementById("problemInstance");
+    removeOptions(select);
+    var algorithm = document.getElementById("algorithm");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance/all", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        algorithm: algorithm.options[algorithm.selectedIndex].text
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.statusCode == 200){
+            for(const elmnt of temp.instances){
+                var opt = document.createElement('option');
+                opt.value = elmnt.problemInstanceID;
+                opt.innerHTML = elmnt.name;
+                select.appendChild(opt);
+            }
+        }
+        else{
+            alert("Invalid Algorithm Name")
+        }
+    }
 }
 
 function removeOptions(selectElement) {
@@ -73,6 +107,11 @@ function createAlgorithmInCatalog(algorithm, indented) {
     indented.appendChild(childNode);
 }
 
+function createNewBenchmark(e){
+    e.preventDefault();
+    post();
+}
+
 function post(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark", true);
@@ -89,16 +128,16 @@ function post(){
         l3: document.getElementById("l3").value,
         name: document.getElementById("name").value,
         runtime: document.getElementById("runtime").value,
-        observations: document.getElementById("benchmark").value,
+        observations: document.getElementById("observation").value,
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
-            console.log("Valid Algorithm")
-            location.href = "home.html";
+            console.log("Valid Benchmark")
+            //location.href = "home.html";
         }
         else{
-            alert("Invalid Algorithm")
+            alert("Invalid Benchmark")
         }
     }
     }

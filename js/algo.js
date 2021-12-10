@@ -16,8 +16,11 @@ window.onload = function() {
 function displayAlgorithm(algorithm) {
     var title = document.getElementById("algorithmName");
     title.innerHTML = algorithm.name;
+    var title = document.getElementById("description");
+    title.innerHTML = algorithm.description;
     createImplementations(algorithm);
 }
+
 
 function createImplementations(algorithm) {
     div = document.getElementById("implementations")
@@ -65,6 +68,11 @@ function checkIfAnnonymous(){
     if(storage.username !== null){
         document.getElementById("login").style.visibility="hidden"
     }
+}
+
+function loadBenchmarks(e){
+    e.preventDefault()
+    location.href = "benchmark.html"
 }
 
 // function get(){

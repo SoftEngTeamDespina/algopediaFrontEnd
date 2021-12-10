@@ -49,6 +49,73 @@ function createAlgorithmInCatalog(algorithm, indented) {
     indented.appendChild(childNode);
 }
 
+var toSend = [];
+
+function submitNewProbInst(e) {
+    e.preventDefault();
+    console.log(document.getElementById("dataSet").files[0]);
+    console.log(getByteArray());
+    post();
+}
+
+async function post(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    await getByteArray()
+    let uname = null
+    if(storage.username !== "null"){
+        uname = storage.username
+    }
+    xhr.send(JSON.stringify({
+        name: document.getElementById("name").value,
+        desc: document.getElementById("description").value,
+        data: JSON.stringify(toSend),
+        algorithm: document.getElementById("algorithm").value,
+        userID: uname
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.statusCode == 200){
+            console.log("Valid Problem Instance")
+            // location.href = "home.html";
+        }
+        else{
+            alert("Invalid Problem Instance")
+        }
+    }
+    }
+
+async function getByteArray() {
+    let myFile = document.getElementById('dataSet').files[0];
+    let byteArray = await fileToByteArray(myFile);
+    console.log(byteArray);
+    toSend = byteArray
+}
+
+function fileToByteArray(file) {
+    return new Promise((resolve, reject) => {
+        try {
+            let reader = new FileReader();
+            let fileByteArray = [];
+            reader.readAsArrayBuffer(file);
+            reader.onloadend = (evt) => {
+                if (evt.target.readyState == FileReader.DONE) {
+                    let arrayBuffer = evt.target.result,
+                        array = new Uint8Array(arrayBuffer);
+                    for (byte of array) {
+                        fileByteArray.push(byte);
+                    }
+                }
+                resolve(fileByteArray);
+            }
+        }
+        catch (e) {
+            reject(e);
+        } 
+    })
+}
+
 function checkIfAnnonymous(){
     if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"

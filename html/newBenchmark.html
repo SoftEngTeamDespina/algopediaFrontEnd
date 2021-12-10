@@ -56,9 +56,9 @@
                 <label for="cpu">CPU:</label>
                 <input type="text" id="cpu" required><br>
                 <label for="cores"># of Cores:</label>
-                <input type="text" id="cores" required><br>
+                <input type="number" id="cores" required><br>
                 <label for="threads"># of Threads:</label>
-                <input type="text" id="threads" required><br>
+                <input type="number" id="threads" required><br>
                 <label for="l1">L1:</label>
                 <input type="text" id="l1" required><br>
                 <label for="l2">L2:</label>
@@ -67,6 +67,8 @@
                 <input type="text" id="l3" required><br>
                 <label for="runtime">Runtime:</label>
                 <input type="text" id="runtime" required><br>
+                <label for="observation">Observations:</label>
+                <input type="text" id="observation" required><br>
                 <button onclick="createNewBenchmark(event)">Submit</button>
             </form>
         </div>
