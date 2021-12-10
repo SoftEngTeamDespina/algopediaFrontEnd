@@ -81,6 +81,28 @@ function updateUsers(){
     }
 }
 
+function downloadActivity(e){
+    e.preventDefault();
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/activity", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        username: document.getElementById("selectUserItem").value,
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        console.log(temp)
+        if(temp.httpStatusCode == 200){
+            console.log("Valid user")
+            //location.href = "home.html";
+        }
+        else{
+            alert("Invalid user")
+        }
+    }
+
+}
+
 function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for(i = L; i >= 0; i--) {
