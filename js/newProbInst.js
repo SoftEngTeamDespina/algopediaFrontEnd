@@ -71,7 +71,7 @@ async function post(){
         name: document.getElementById("name").value,
         desc: document.getElementById("description").value,
         data: JSON.stringify(toSend),
-        algorithm: document.getElementById("algorithm").value,
+        algoID: document.getElementById("algorithm").value,
         userID: uname
     }));
     xhr.onload = function(){
