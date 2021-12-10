@@ -7,6 +7,7 @@ window.onload = async function(){
         catalog = JSON.parse(storage.catalog);
         updatePage(catalog);
         updateItems();
+        updateUsers();
         console.log(catalog);
     }
 }
@@ -54,6 +55,29 @@ function updateItems() {
             break;
         case 'benchmark':
             break;
+    }
+}
+
+function updateUsers(){
+    var select = document.getElementById("selectUserItem");
+    removeOptions(select);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(null)
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.httpStatusCode == 200){
+            for(const elmnt of temp.username){
+                var opt = document.createElement('option');
+                opt.value = elmnt;
+                opt.innerHTML = elmnt;
+                select.appendChild(opt);
+            }
+        }
+        else{
+            alert("Error Fetching Users")
+        }
     }
 }
 

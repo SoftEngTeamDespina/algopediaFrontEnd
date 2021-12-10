@@ -44,9 +44,9 @@
             <div id = "data"></div>
         </div>
         <div class="main_content">
-            <form>
+            <form id="removeForm">
                 <legend>Remove</legend>
-                <label for="selectCategory">Select Category</label>
+                <label for="selectCategory">Select Category: </label>
                 <select onchange="updateItems()" id="selectCategory">
                   <option value="classification">Classification</option>
                   <option value="algorithm">Algorithm</option>
@@ -54,10 +54,17 @@
                   <option value="problemInstance">Problem Instance</option>
                   <option value="benchmark">Benchmark</option>
                 </select><br>
-                <label for="selectItem">Select Item</label>
+                <label for="selectItem">Select Item: </label>
                 <select id="selectItem"></select><br>
                 <button onclick="remove()">Remove</button>
             </form>
+            <br><br>
+            <form id="userForm">
+              <legend>User Activity</legend>
+              <label for="selectItem">User: </label>
+              <select id="selectUserItem"></select><br>
+              <button onclick="downloadActivity(e)">Download Activity</button>
+          </form>
         </div>
     </div>
 
