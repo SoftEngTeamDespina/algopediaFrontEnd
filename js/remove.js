@@ -1,5 +1,6 @@
 const storage = window.sessionStorage;
 var catalog;
+let algorithms = [];
 
 window.onload = async function(){
     checkIfAnnonymous();
@@ -36,8 +37,20 @@ function loadBenchmarks(algorithm) {
     }
 }
 
+function changeImplementations(algorithm) {
+    let selectItem = document.getElementById("selectItem");
+    var newAlgorithm = algorithms.find(element => element.algorithmID === algorithm);
+    newAlgorithm.implementations.forEach(implementation => {
+        var opt = document.createElement('option');
+        opt.value = implementation.implementationID;
+        opt.innerHTML = implementation.filename;
+        selectItem.appendChild(opt);
+    });
+}
+
+
 function getProbInstances(algorithm){
-    var select = document.getElementById("problemInstance");
+    let selectItem = document.getElementById("selectItem");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance/all", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -63,8 +76,9 @@ function addAlgorithms() {
     let algorithmSelect = document.getElementById("algorithm");
     catalog.clList.forEach(element => {
         element.algorithms.forEach(algorithm => {
+            algorithms.push(algorithm);
             var option = document.createElement('option');
-            option.value = algorithm.name;
+            option.value = algorithm.algorithmID;
             option.innerHTML = algorithm.name;
             algorithmSelect.appendChild(option);
         })
@@ -104,24 +118,15 @@ function updateItems() {
             break;
         case 'implementation':
             algorithmDiv.hidden = false;
-            catalog.clList.forEach(element => {
-                element.algorithms.forEach(algorithm => {
-                    algorithm.implementations.forEach(implementation => {
-                        var option = document.createElement('option');
-                        option.value = implementation.implementationID;
-                        option.innerHTML = implementation.filename;
-                        selectItem.appendChild(option);
-                    })
-                })
-            });
+            changeImplementations(algorithmSelect.value);
             break;
         case 'problemInstance':
             algorithmDiv.hidden = false;
-            getProbInstances(algorithmSelect.value);
+            getProbInstances(algorithmSelect.options[algorithmSelect.selectedIndex].text);
             break;
         case 'benchmark':
             algorithmDiv.hidden = false;
-            loadBenchmarks(algorithmSelect.value);
+            loadBenchmarks(algorithmSelect.options[algorithmSelect.selectedIndex].text);
             break;
     }
 }
@@ -160,9 +165,14 @@ function downloadActivity(e){
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         console.log(temp)
-        if(temp.httpStatusCode == 200){
-            console.log("Valid user")
-            //location.href = "home.html";
+        if(temp.httpStatusCode == 200) {
+            let csvContent = "data:text/csv;charset=utf-8," 
+            + temp.actions.forEach(element => {
+                
+            }).join("\n");
+
+            var encodedUri = encodeURI(csvContent);
+            // window.open(encodedUri);
         }
         else{
             alert("Invalid user")
@@ -206,8 +216,7 @@ function createAlgorithmInCatalog(algorithm, indented) {
     indented.appendChild(childNode);
 }
 
-function checkIfAnnonymous(){
-    
+function checkIfAnnonymous() {
     if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
     }
