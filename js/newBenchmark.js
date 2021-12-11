@@ -43,7 +43,6 @@ function changeProblemInstance() {
     var select = document.getElementById("problemInstance");
     var algorithm = document.getElementById("algorithm");
     removeOptions(select);
-
 }
 
 function getProbInstances(){

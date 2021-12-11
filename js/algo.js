@@ -10,6 +10,7 @@ window.onload = function() {
 
     if (algorithm !== undefined) {
         displayAlgorithm(algorithm);
+        getProblemInstance(algorithm);
     }
 }
 
@@ -29,10 +30,58 @@ function createImplementations(algorithm) {
         node.innerHTML = element.filename;
         node.style.cursor = "pointer";
         node.onclick = function() {
-            alert("Get file");
+            getFile(element.implementationID);
         }
         div.appendChild(node);
     });
+}
+
+function getProblemInstance(algorithm) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance/all", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        algorithm: algorithm.name
+    }));
+    xhr.onload = function() {
+        temp = JSON.parse(xhr.response)
+        if(temp.statusCode == 200){
+            for(const elmnt of temp.instances){
+                div = document.getElementById("probInst")
+                algorithm.implementations.forEach(element => {
+                    var node = document.createElement('ul');
+                    node.innerHTML = element.filename;
+                    node.style.cursor = "pointer";
+                    node.onclick = function() {
+                        console.log(element);
+                        // getFile(element.implementationID);
+                    }
+                    div.appendChild(node);
+                });
+            }
+        }
+        else{
+            alert("Invalid Algorithm Name")
+        }
+    }
+}
+
+function getFile(fileName) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://cs509teamdespina.s3.us-east-2.amazonaws.com/implementations/" + fileName + ".txt", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+    xhr.onload = function() {
+        temp = JSON.parse(xhr.response)
+        if(temp.statusCode == 200){
+            console.log(temp);
+            // console.log("implementation deleted")
+            // location.href = "remove.html";
+        }
+        else{
+            alert("Could not delete")
+        }
+    }
 }
 
 function updatePage(data) {
