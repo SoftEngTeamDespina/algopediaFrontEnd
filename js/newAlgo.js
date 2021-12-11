@@ -48,11 +48,9 @@ function createAlgorithmInCatalog(algorithm, indented) {
     indented.appendChild(childNode);
 }
 
-document.getElementById("newAlgo").onclick =async function () {
-    await post()
-}
 
-function post(){
+function newAlgo(e){
+    e.preventDefault();
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -65,7 +63,7 @@ function post(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
             console.log("Valid Algorithm")
-            location.href = "home.html";
+            //location.href = "newAlgo.html";
         }
         else{
             alert("Invalid Algorithm")
