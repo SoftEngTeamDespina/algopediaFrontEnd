@@ -68,18 +68,15 @@ function getProblemInstance(algorithm) {
 
 function getFile(fileName, folder) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://cs509teamdespina.s3.us-east-2.amazonaws.com/"+folder+"/" + fileName + ".txt", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    // let url = "https://cs509teamdespina.s3.us-east-2.amazonaws.com/"+folder+"/" + fileName + ".txt"
+    let url = "https://cs509teamdespina.s3.us-east-2.amazonaws.com/implementations/820574c2-5aa9-11ec-bed7-06555d90c736"
+    xhr.open("GET", url, true);
     xhr.send();
-    xhr.onload = function() {
-        temp = JSON.parse(xhr.response)
-        if(temp.statusCode == 200){
-            console.log(temp);
-            // console.log("implementation deleted")
-            // location.href = "remove.html";
-        }
-        else{
-            alert("Could not delete")
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            $('<iframe>', { id:'idown', src:url }).hide().appendTo('body').click();
+        } else {
+            alert("unable to get file")
         }
     }
 }
