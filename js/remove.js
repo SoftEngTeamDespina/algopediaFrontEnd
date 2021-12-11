@@ -2,7 +2,19 @@ const storage = window.sessionStorage;
 var catalog;
 let algorithms = [];
 
+async function fetchAll() {
+    const response = await fetch('https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/allClassifications');
+    const data = await response.json();
+    return data;
+}
+
+function addToLocalStorage(data) {
+    storage.catalog = JSON.stringify(data);
+}
+
 window.onload = async function(){
+    data = await fetchAll();
+    addToLocalStorage(data);
     checkIfAnnonymous();
     if (storage.catalog !== undefined) {
         catalog = JSON.parse(storage.catalog);
@@ -157,22 +169,28 @@ function updateUsers(){
 function downloadActivity(e){
     e.preventDefault();
     var xhr = new XMLHttpRequest();
+    user = document.getElementById("selectUserItem").value;
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/activity", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-        username: document.getElementById("selectUserItem").value,
+        username: user,
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         console.log(temp)
         if(temp.httpStatusCode == 200) {
             let csvContent = "data:text/csv;charset=utf-8," 
-            + temp.actions.forEach(element => {
-                
-            }).join("\n");
-
+            + 'user,action,timeStamp\n' + temp.actions.map(element => {
+               return element.authorID + ',' + element.action + ',' + element.timeStamp
+            }).join('\n');
+            console.log(csvContent);
             var encodedUri = encodeURI(csvContent);
-            // window.open(encodedUri);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", user+"_activity.csv");
+            document.body.appendChild(link);
+
+            link.click();
         }
         else{
             alert("Invalid user")
