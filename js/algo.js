@@ -53,8 +53,7 @@ function getProblemInstance(algorithm) {
                     node.innerHTML = element.filename;
                     node.style.cursor = "pointer";
                     node.onclick = function() {
-                        console.log(element);
-                        // getFile(element.implementationID, problemInstances);
+                        getFile(element.problemInstanceID, problemInstances);
                     }
                     div.appendChild(node);
                 });
