@@ -46,9 +46,7 @@ function getProblemInstance(algorithm) {
     xhr.onload = function() {
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
-            for(const elmnt of temp.instances){
                 div = document.getElementById("probInst")
-                console.log(temp)
                 temp.instances.forEach(element => {
                     var node = document.createElement('ul');
                     node.innerHTML = element.name;
@@ -58,7 +56,6 @@ function getProblemInstance(algorithm) {
                     }
                     div.appendChild(node);
                 });
-            }
         }
         else{
             alert("Invalid Algorithm Name")
