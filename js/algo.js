@@ -30,7 +30,7 @@ function createImplementations(algorithm) {
         node.innerHTML = element.filename;
         node.style.cursor = "pointer";
         node.onclick = function() {
-            getFile(element.implementationID);
+            getFile(element.implementationID, "implementations");
         }
         div.appendChild(node);
     });
@@ -54,7 +54,7 @@ function getProblemInstance(algorithm) {
                     node.style.cursor = "pointer";
                     node.onclick = function() {
                         console.log(element);
-                        // getFile(element.implementationID);
+                        // getFile(element.implementationID, problemInstances);
                     }
                     div.appendChild(node);
                 });
@@ -66,9 +66,9 @@ function getProblemInstance(algorithm) {
     }
 }
 
-function getFile(fileName) {
+function getFile(fileName, folder) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://cs509teamdespina.s3.us-east-2.amazonaws.com/implementations/" + fileName + ".txt", true);
+    xhr.open("GET", "https://cs509teamdespina.s3.us-east-2.amazonaws.com/"+folder+"/" + fileName + ".txt", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
     xhr.onload = function() {
