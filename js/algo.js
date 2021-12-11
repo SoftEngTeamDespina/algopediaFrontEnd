@@ -48,12 +48,13 @@ function getProblemInstance(algorithm) {
         if(temp.statusCode == 200){
             for(const elmnt of temp.instances){
                 div = document.getElementById("probInst")
-                algorithm.implementations.forEach(element => {
+                console.log(temp)
+                temp.instances.forEach(element => {
                     var node = document.createElement('ul');
-                    node.innerHTML = element.filename;
+                    node.innerHTML = element.name;
                     node.style.cursor = "pointer";
                     node.onclick = function() {
-                        getFile(element.problemInstanceID, problemInstances);
+                        getFile(element.problemInstanceID, "ProblemInstances");
                     }
                     div.appendChild(node);
                 });
