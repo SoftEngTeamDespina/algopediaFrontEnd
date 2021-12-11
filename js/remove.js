@@ -167,12 +167,17 @@ function downloadActivity(e){
         console.log(temp)
         if(temp.httpStatusCode == 200) {
             let csvContent = "data:text/csv;charset=utf-8," 
-            + temp.actions.forEach(element => {
-                
-            }).join("\n");
-
+            + 'user,action,timeStamp\n' + temp.actions.map(element => {
+               return element.authorID + ',' + element.action + ',' + element.timeStamp
+            }).join('\n');
+            console.log(csvContent);
             var encodedUri = encodeURI(csvContent);
-            // window.open(encodedUri);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", element.authorID+"_activity.csv");
+            document.body.appendChild(link);
+
+            link.click();
         }
         else{
             alert("Invalid user")
