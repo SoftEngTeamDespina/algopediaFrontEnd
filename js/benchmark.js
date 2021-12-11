@@ -82,7 +82,6 @@ function loadBenchmarks(){
 
 
 function deleteBenchmark(benchmarkID){
-    var tbl = document.getElementById("benchmarks");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark/delete", true);
     xhr.setRequestHeader('Content-Type', 'application/json');

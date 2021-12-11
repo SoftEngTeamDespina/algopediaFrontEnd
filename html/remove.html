@@ -58,7 +58,7 @@
                 </div>
                 <label for="selectItem">Select Item: </label>
                 <select id="selectItem"></select><br>
-                <button onclick="remove()">Remove</button>
+                <button onclick="remove(event)">Remove</button>
             </form>
             <br><br>
             <form id="userForm">
@@ -66,6 +66,7 @@
               <label for="selectItem">User: </label>
               <select id="selectUserItem"></select><br>
               <button onclick="downloadActivity(event)">Download Activity</button>
+              <button onclick="removeUser(event)">Delete User</button>
           </form>
         </div>
     </div>

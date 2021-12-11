@@ -97,10 +97,6 @@ function addAlgorithms() {
     });
 }
 
-function remove() {
-    alert("Coming soon!");
-}
-
 function updateItems() {
     category = document.getElementById("selectCategory").value;
     selectItem = document.getElementById("selectItem");
@@ -139,6 +135,110 @@ function updateItems() {
         case 'benchmark':
             algorithmDiv.hidden = false;
             loadBenchmarks(algorithmSelect.options[algorithmSelect.selectedIndex].text);
+            break;
+    }
+}
+
+function remove(e) {
+    e.preventDefault();
+    console.log("here")
+    category = document.getElementById("selectCategory").value;
+    selectItem = document.getElementById("selectItem");
+    switch(category) {
+        case 'classification':
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/classification/delete", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({    
+                id: selectItem.value,
+                user: storage.username
+            }));
+            xhr.onload = function(){
+                temp = JSON.parse(xhr.response)
+                if(temp.statusCode == 200){
+                    console.log("implementation deleted")
+                    location.href = "remove.html";
+                }
+                else{
+                    alert("Could not delete")
+                }
+            }
+            break;
+        case 'algorithm':
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/algorithm/delete", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({    
+                id: selectItem.value,
+                user: storage.username
+            }));
+            xhr.onload = function(){
+                temp = JSON.parse(xhr.response)
+                if(temp.statusCode == 200){
+                    console.log("algorithm deleted")
+                    location.href = "remove.html";
+                }
+                else{
+                    alert("Could not delete")
+                }
+            }
+            break;
+        case 'implementation':
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/implementation/delete", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({    
+                id: selectItem.value,
+                user: storage.username
+            }));
+            xhr.onload = function(){
+                temp = JSON.parse(xhr.response)
+                if(temp.statusCode == 200){
+                    console.log("implementation deleted")
+                    location.href = "remove.html";
+                }
+                else{
+                    alert("Could not delete")
+                }
+            }
+            break;
+        case 'problemInstance':
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/probleminstance/delete", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({    
+                id: selectItem.value,
+                user: storage.username
+            }));
+            xhr.onload = function(){
+                temp = JSON.parse(xhr.response)
+                if(temp.statusCode == 200){
+                    console.log("implementation deleted")
+                    location.href = "remove.html";
+                }
+                else{
+                    alert("Could not delete")
+                }
+            }
+            break;
+        case 'benchmark':
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark/delete", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({    
+                id: selectItem.value,
+                user: storage.username
+            }));
+            xhr.onload = function(){
+                temp = JSON.parse(xhr.response)
+                if(temp.statusCode == 200){
+                    console.log("benchmark deleted")
+                    location.href = "remove.html";
+                }
+                else{
+                    alert("Could not delete")
+                }
+            }
             break;
     }
 }
