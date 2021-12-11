@@ -266,6 +266,27 @@ function updateUsers(){
     }
 }
 
+function removeUser(e){
+    e.preventDefault()
+    var select = document.getElementById("selectUserItem");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/remove", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        username: select.value,
+        user: storage.username
+    }));
+    xhr.onload = function(){
+        temp = JSON.parse(xhr.response)
+        if(temp.httpStatusCode == 200){
+            location.href = "remove.html";
+        }
+        else{
+            alert("Error Deleting Users")
+        }
+    }
+}
+
 function downloadActivity(e){
     e.preventDefault();
     var xhr = new XMLHttpRequest();
