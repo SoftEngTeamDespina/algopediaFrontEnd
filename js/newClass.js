@@ -80,8 +80,11 @@ function newClass(e){
             document.getElementById("login").style.visibility="hidden"
             document.getElementById("newClass").hidden = false;
             document.getElementById("nullUser").hidden = true;
+            document.getElementById("manage").hidden = false;
         } else {
             document.getElementById("newClass").hidden = true;
             document.getElementById("nullUser").hidden = false;
+            document.getElementById("manage").hidden = true;
+            document.getElementById("manage").style.visibility="hidden";
         }
     }

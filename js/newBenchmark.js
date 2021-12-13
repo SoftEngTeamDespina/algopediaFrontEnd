@@ -145,5 +145,7 @@ function post(){
 function checkIfAnnonymous(){
     if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
+    } else {
+        document.getElementById("manage").style.visibility="hidden";
     }
 }

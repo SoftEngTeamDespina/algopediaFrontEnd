@@ -48,11 +48,12 @@ function getProblemInstance(algorithm) {
         if(temp.statusCode == 200){
                 div = document.getElementById("probInst")
                 temp.instances.forEach(element => {
+                    console.log(element)
                     var node = document.createElement('ul');
                     node.innerHTML = element.name;
                     node.style.cursor = "pointer";
                     node.onclick = function() {
-                        getFile(element.problemInstanceID, "ProblemInstances");
+                        getFile(element.name+element.algoID, "ProblemInstances");
                     }
                     div.appendChild(node);
                 });
@@ -66,7 +67,6 @@ function getProblemInstance(algorithm) {
 function getFile(fileName, folder) {
     var xhr = new XMLHttpRequest();
     let url = "https://cs509teamdespina.s3.us-east-2.amazonaws.com/"+folder+"/" + fileName + ".txt"
-    // let url = "https://cs509teamdespina.s3.us-east-2.amazonaws.com/implementations/820574c2-5aa9-11ec-bed7-06555d90c736"
     xhr.open("GET", url, true);
     xhr.send();
     xhr.onload = function(e) {
@@ -108,8 +108,10 @@ function createAlgorithmInCatalog(algorithm, indented) {
 
 function checkIfAnnonymous(){
     
-    if(storage.username !== null){
+    if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
+    } else {
+        document.getElementById("manage").style.visibility="hidden";
     }
 }
 
@@ -117,20 +119,3 @@ function loadBenchmarks(e){
     e.preventDefault()
     location.href = "benchmark.html"
 }
-
-// function get(){
-//     var xhr = new XMLHttpRequest();
-//     xhr.open("GET", "https://uvioipofh3.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//     xhr.send(JSON.stringify({
-//         id: document.getElementById("algoID").value
-//     }));
-//     return xhr.responseText;
-//     }
-
-// function updatePage(data){
-//     realData = JSON.parse(data);
-//     document.getElementById("name").innerHTML = realData.name;
-//     document.getElementById("desc").innerHTML = realData.description;
-//     document.getElementById("class").innerHTML = realData.classification;
-// }

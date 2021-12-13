@@ -124,5 +124,6 @@ function checkIfAnnonymous(){
     } else {
         document.getElementById("newProbInst").hidden = true;
         document.getElementById("nullUser").hidden = false;
+        document.getElementById("manage").style.visibility="hidden";
     }
 }

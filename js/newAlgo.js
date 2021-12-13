@@ -79,5 +79,6 @@ function newAlgo(e){
         } else {
             document.getElementById("newAlgo").hidden = true;
             document.getElementById("nullUser").hidden = false;
+            document.getElementById("manage").style.visibility="hidden";
         }
     }
