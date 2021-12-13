@@ -46,7 +46,7 @@ function createAlgorithmInCatalog(algorithm, indented) {
 }
 
 function checkIfAnnonymous(){
-    
+    console.log(storage.username)
     if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
     }

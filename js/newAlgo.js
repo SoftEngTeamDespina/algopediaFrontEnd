@@ -72,8 +72,12 @@ function newAlgo(e){
     }
 
     function checkIfAnnonymous(){
-    
         if(storage.username !== "null"){
             document.getElementById("login").style.visibility="hidden"
+            document.getElementById("newAlgo").hidden = false;
+            document.getElementById("nullUser").hidden = true;
+        } else {
+            document.getElementById("newAlgo").hidden = true;
+            document.getElementById("nullUser").hidden = false;
         }
     }

@@ -111,8 +111,12 @@ function fileToByteArray(file) {
 }
 
 function checkIfAnnonymous(){
-    
     if(storage.username !== "null"){
         document.getElementById("login").style.visibility="hidden"
+        document.getElementById("newImp").hidden = false;
+        document.getElementById("nullUser").hidden = true;
+    } else {
+        document.getElementById("newImp").hidden = true;
+        document.getElementById("nullUser").hidden = false;
     }
 }

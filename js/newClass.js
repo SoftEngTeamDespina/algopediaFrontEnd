@@ -76,8 +76,12 @@ function newClass(e){
     }
 
     function checkIfAnnonymous(){
-    
         if(storage.username !== "null"){
             document.getElementById("login").style.visibility="hidden"
+            document.getElementById("newClass").hidden = false;
+            document.getElementById("nullUser").hidden = true;
+        } else {
+            document.getElementById("newClass").hidden = true;
+            document.getElementById("nullUser").hidden = false;
         }
     }
