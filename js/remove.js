@@ -131,10 +131,10 @@ function updateItems() {
             algorithmDiv.hidden = false;
             getProbInstances(algorithmSelect.options[algorithmSelect.selectedIndex].text);
             break;
-        case 'benchmark':
-            algorithmDiv.hidden = false;
-            loadBenchmarks(algorithmSelect.options[algorithmSelect.selectedIndex].text);
-            break;
+        // case 'benchmark':
+        //     algorithmDiv.hidden = false;
+        //     loadBenchmarks(algorithmSelect.options[algorithmSelect.selectedIndex].text);
+        //     break;
     }
 }
 
@@ -220,81 +220,81 @@ function remove(e) {
                 }
             }
             break;
-        case 'benchmark':
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark/delete", true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify({    
-                id: selectItem.value,
-                user: storage.username
-            }));
-            xhr.onload = function(){
-                temp = JSON.parse(xhr.response)
-                if(temp.statusCode == 200){
-                    console.log("benchmark deleted")
-                    location.href = "remove.html";
-                }
-                else{
-                    alert("Could not delete")
-                }
-            }
-            break;
+        // case 'benchmark':
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark/delete", true);
+        //     xhr.setRequestHeader('Content-Type', 'application/json');
+        //     xhr.send(JSON.stringify({    
+        //         id: selectItem.value,
+        //         user: storage.username
+        //     }));
+        //     xhr.onload = function(){
+        //         temp = JSON.parse(xhr.response)
+        //         if(temp.statusCode == 200){
+        //             console.log("benchmark deleted")
+        //             location.href = "remove.html";
+        //         }
+        //         else{
+        //             alert("Could not delete")
+        //         }
+        //     }
+        //     break;
     }
 }
 
-function removeUser(e){
-    e.preventDefault()
-    var select = document.getElementById("selectUserItem");
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/remove", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({    
-        username: select.value,
-        user: storage.username
-    }));
-    xhr.onload = function(){
-        temp = JSON.parse(xhr.response)
-        if(temp.httpStatusCode == 200){
-            location.href = "remove.html";
-        }
-        else{
-            alert("Error Deleting Users")
-        }
-    }
-}
+// function removeUser(e){
+//     e.preventDefault()
+//     var select = document.getElementById("selectUserItem");
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/remove", true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.send(JSON.stringify({    
+//         username: select.value,
+//         user: storage.username
+//     }));
+//     xhr.onload = function(){
+//         temp = JSON.parse(xhr.response)
+//         if(temp.httpStatusCode == 200){
+//             location.href = "remove.html";
+//         }
+//         else{
+//             alert("Error Deleting Users")
+//         }
+//     }
+// }
 
-function downloadActivity(e){
-    e.preventDefault();
-    var xhr = new XMLHttpRequest();
-    user = document.getElementById("selectUserItem").value;
-    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/activity", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        username: user,
-    }));
-    xhr.onload = function(){
-        temp = JSON.parse(xhr.response)
-        console.log(temp)
-        if(temp.httpStatusCode == 200) {
-            let csvContent = "data:text/csv;charset=utf-8," 
-            + 'user,action,timeStamp\n' + temp.actions.map(element => {
-               return element.authorID + ',' + element.action + ',' + element.timeStamp
-            }).join('\n');
-            console.log(csvContent);
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", user+"_activity.csv");
-            document.body.appendChild(link);
+// function downloadActivity(e){
+//     e.preventDefault();
+//     var xhr = new XMLHttpRequest();
+//     user = document.getElementById("selectUserItem").value;
+//     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/user/activity", true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.send(JSON.stringify({
+//         username: user,
+//     }));
+//     xhr.onload = function(){
+//         temp = JSON.parse(xhr.response)
+//         console.log(temp)
+//         if(temp.httpStatusCode == 200) {
+//             let csvContent = "data:text/csv;charset=utf-8," 
+//             + 'user,action,timeStamp\n' + temp.actions.map(element => {
+//                return element.authorID + ',' + element.action + ',' + element.timeStamp
+//             }).join('\n');
+//             console.log(csvContent);
+//             var encodedUri = encodeURI(csvContent);
+//             var link = document.createElement("a");
+//             link.setAttribute("href", encodedUri);
+//             link.setAttribute("download", user+"_activity.csv");
+//             document.body.appendChild(link);
 
-            link.click();
-        }
-        else{
-            alert("Invalid user")
-        }
-    }
+//             link.click();
+//         }
+//         else{
+//             alert("Invalid user")
+//         }
+//     }
 
-}
+// }
 
 function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
