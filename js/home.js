@@ -35,7 +35,7 @@ function createIndentCatalog(element) {
 
 function createCatalog(div, element) {
     var node = document.createElement('ol');
-    node.innerHTML = element.name;
+    node.innerHTML = element.name.bold();
     node.setAttribute('id', element.classificationID);
     div.appendChild(node);
     indented = node.appendChild(document.createElement("ul"));
