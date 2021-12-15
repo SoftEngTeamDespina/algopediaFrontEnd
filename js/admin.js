@@ -327,16 +327,36 @@ function removeOptions(selectElement) {
     }
  }
 
-function updatePage(data) {
-    div = document.getElementById("data")
+ function updatePage(data) {
+    div = document.getElementById("data");
+    children = []
     data.clList.forEach(element => {
-        createCatalog(div, element);
+        if (element.superClassification) {
+            children.push(element);
+        } else {
+            createCatalog(div, element);
+        }
     });
+    while (children.length !== 0) {
+        let child = children.shift();
+        let parentNode = document.getElementById(child.superClassification);
+        if (!!!parentNode) {
+            children.push(child);
+        } else {
+            createIndentCatalog(child);
+        }
+    }
+}
+
+function createIndentCatalog(element) {
+    let parentNode = document.getElementById(element.superClassification);
+    createCatalog(parentNode, element);
 }
 
 function createCatalog(div, element) {
     var node = document.createElement('ol');
-    node.innerHTML = element.name;
+    node.innerHTML = element.name.bold();
+    node.setAttribute('id', element.classificationID);
     div.appendChild(node);
     indented = node.appendChild(document.createElement("ul"));
     element.algorithms.forEach(algorithm => {

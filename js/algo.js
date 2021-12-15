@@ -79,14 +79,24 @@ function getFile(fileName, folder) {
 }
 
 function updatePage(data) {
-    div = document.getElementById("data")
+    div = document.getElementById("data");
+    children = []
     data.clList.forEach(element => {
         if (element.superClassification) {
-            createIndentCatalog(element);
+            children.push(element);
         } else {
             createCatalog(div, element);
         }
     });
+    while (children.length !== 0) {
+        let child = children.shift();
+        let parentNode = document.getElementById(child.superClassification);
+        if (!!!parentNode) {
+            children.push(child);
+        } else {
+            createIndentCatalog(child);
+        }
+    }
 }
 
 function createIndentCatalog(element) {

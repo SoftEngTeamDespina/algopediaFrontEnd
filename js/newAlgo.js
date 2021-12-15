@@ -21,14 +21,24 @@ function updateClassification(catalog) {
 }
 
 function updatePage(data) {
-    div = document.getElementById("data")
+    div = document.getElementById("data");
+    children = []
     data.clList.forEach(element => {
         if (element.superClassification) {
-            createIndentCatalog(element);
+            children.push(element);
         } else {
             createCatalog(div, element);
         }
     });
+    while (children.length !== 0) {
+        let child = children.shift();
+        let parentNode = document.getElementById(child.superClassification);
+        if (!!!parentNode) {
+            children.push(child);
+        } else {
+            createIndentCatalog(child);
+        }
+    }
 }
 
 function createIndentCatalog(element) {
@@ -65,6 +75,7 @@ function newAlgo(e){
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/algorithm", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
+        user: storage.username,
         name: document.getElementById("name").value,
         description: document.getElementById("desc").value,
         id: document.getElementById("class").value
@@ -72,8 +83,7 @@ function newAlgo(e){
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
-            console.log("Valid Algorithm")
-            //location.href = "newAlgo.html";
+            location.assign('home.html');
         }
         else{
             alert("Invalid Algorithm")

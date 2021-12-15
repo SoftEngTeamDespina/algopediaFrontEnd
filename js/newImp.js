@@ -22,14 +22,24 @@ function addAlgorithms(catalog) {
 }
 
 function updatePage(data) {
-    div = document.getElementById("data")
+    div = document.getElementById("data");
+    children = []
     data.clList.forEach(element => {
         if (element.superClassification) {
-            createIndentCatalog(element);
+            children.push(element);
         } else {
             createCatalog(div, element);
         }
     });
+    while (children.length !== 0) {
+        let child = children.shift();
+        let parentNode = document.getElementById(child.superClassification);
+        if (!!!parentNode) {
+            children.push(child);
+        } else {
+            createIndentCatalog(child);
+        }
+    }
 }
 
 function createIndentCatalog(element) {
@@ -74,6 +84,7 @@ async function post() {
     xhr.setRequestHeader('Content-Type', 'application/json');
     await getByteArray()
     xhr.send(JSON.stringify({
+        user: storage.username,
         language: document.getElementById("lang").value,
         code: JSON.stringify(toSend),
         algorithm: document.getElementById("algorithm").value,
