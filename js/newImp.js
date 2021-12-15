@@ -92,8 +92,7 @@ async function post() {
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
-            console.log("Valid Implementation")
-            // location.href = "home.html";
+            location.assign('home.html');
         }
         else{
             alert("Invalid Implementation")

@@ -24,16 +24,34 @@ function displayAlgorithm(algorithm) {
 
 
 function createImplementations(algorithm) {
-    div = document.getElementById("implementations")
-    algorithm.implementations.forEach(element => {
-        var node = document.createElement('ul');
-        node.innerHTML = element.filename;
-        node.style.cursor = "pointer";
-        node.onclick = function() {
-            getFile(element.implementationID, "implementations");
+    getImplementations(algorithm);
+}
+
+function getImplementations(algorithm) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/implementation/all", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({    
+        algorithm: algorithm.name
+    }));
+    xhr.onload = function() {
+        temp = JSON.parse(xhr.response)
+        if(temp.statusCode == 200){
+            div = document.getElementById("implementations")
+            temp.implementations.forEach(element => {
+                var node = document.createElement('ul');
+                node.innerHTML = element.filename;
+                node.style.cursor = "pointer";
+                node.onclick = function() {
+                    getFile(element.implementationID, "implementations");
+                }
+                div.appendChild(node);
+            });
         }
-        div.appendChild(node);
-    });
+        else{
+            alert("Invalid Algorithm Name")
+        }
+    }
 }
 
 function getProblemInstance(algorithm) {
