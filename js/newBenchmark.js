@@ -135,25 +135,40 @@ function post(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://rhoplou1ei.execute-api.us-east-2.amazonaws.com/iteration1/benchmark", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        user: storage.user,
-        problem_instance: document.getElementById("problemInstance").value,
-        implementation: document.getElementById("implementation").value,
-        cpu: document.getElementById("cpu").value,
-        cores: document.getElementById("cores").value,
-        threads: document.getElementById("threads").value,
-        l1: document.getElementById("l1").value,
-        l2: document.getElementById("l2").value,
-        l3: document.getElementById("l3").value,
-        name: document.getElementById("name").value,
-        runtime: document.getElementById("runtime").value,
-        observations: document.getElementById("observation").value,
-    }));
+    if (storage.username === 'null') {
+        xhr.send(JSON.stringify({
+            problem_instance: document.getElementById("problemInstance").value,
+            implementation: document.getElementById("implementation").value,
+            cpu: document.getElementById("cpu").value,
+            cores: document.getElementById("cores").value,
+            threads: document.getElementById("threads").value,
+            l1: document.getElementById("l1").value,
+            l2: document.getElementById("l2").value,
+            l3: document.getElementById("l3").value,
+            name: document.getElementById("name").value,
+            runtime: document.getElementById("runtime").value,
+            observations: document.getElementById("observation").value,
+        }));
+    } else {
+        xhr.send(JSON.stringify({
+            user: storage.username,
+            problem_instance: document.getElementById("problemInstance").value,
+            implementation: document.getElementById("implementation").value,
+            cpu: document.getElementById("cpu").value,
+            cores: document.getElementById("cores").value,
+            threads: document.getElementById("threads").value,
+            l1: document.getElementById("l1").value,
+            l2: document.getElementById("l2").value,
+            l3: document.getElementById("l3").value,
+            name: document.getElementById("name").value,
+            runtime: document.getElementById("runtime").value,
+            observations: document.getElementById("observation").value,
+        }));
+    }
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
-            console.log("Valid Benchmark")
-            //location.href = "home.html";
+            location.assign('home.html');
         }
         else{
             alert("Invalid Benchmark")

@@ -157,7 +157,7 @@ function remove(e) {
                 temp = JSON.parse(xhr.response)
                 if(temp.statusCode == 200){
                     console.log("implementation deleted")
-                    location.href = "remove.html";
+                    location.href = "admin.html";
                 }
                 else{
                     alert("Could not delete")
@@ -176,7 +176,7 @@ function remove(e) {
                 temp = JSON.parse(xhr.response)
                 if(temp.statusCode == 200){
                     console.log("algorithm deleted")
-                    location.href = "remove.html";
+                    location.href = "admin.html";
                 }
                 else{
                     alert("Could not delete")
@@ -195,7 +195,7 @@ function remove(e) {
                 temp = JSON.parse(xhr.response)
                 if(temp.statusCode == 200){
                     console.log("implementation deleted")
-                    location.href = "remove.html";
+                    location.href = "admin.html";
                 }
                 else{
                     alert("Could not delete")
@@ -214,7 +214,7 @@ function remove(e) {
                 temp = JSON.parse(xhr.response)
                 if(temp.statusCode == 200){
                     console.log("implementation deleted")
-                    location.href = "remove.html";
+                    location.href = "admin.html";
                 }
                 else{
                     alert("Could not delete")
@@ -233,7 +233,7 @@ function remove(e) {
                 temp = JSON.parse(xhr.response)
                 if(temp.statusCode == 200){
                     console.log("benchmark deleted")
-                    location.href = "remove.html";
+                    location.href = "admin.html";
                 }
                 else{
                     alert("Could not delete")
@@ -279,7 +279,7 @@ function removeUser(e){
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.httpStatusCode == 200){
-            location.href = "remove.html";
+            location.href = "admin.html";
         }
         else{
             alert("Error Deleting Users")
