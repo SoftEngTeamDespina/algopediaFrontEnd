@@ -24,13 +24,23 @@ function addAlgorithms(catalog) {
 function updatePage(data) {
     div = document.getElementById("data")
     data.clList.forEach(element => {
-        createCatalog(div, element);
+        if (element.superClassification) {
+            createIndentCatalog(element);
+        } else {
+            createCatalog(div, element);
+        }
     });
+}
+
+function createIndentCatalog(element) {
+    let parentNode = document.getElementById(element.superClassification);
+    createCatalog(parentNode, element);
 }
 
 function createCatalog(div, element) {
     var node = document.createElement('ol');
     node.innerHTML = element.name;
+    node.setAttribute('id', element.classificationID);
     div.appendChild(node);
     indented = node.appendChild(document.createElement("ul"));
     element.algorithms.forEach(algorithm => {
