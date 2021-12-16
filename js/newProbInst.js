@@ -92,13 +92,13 @@ async function post(){
         desc: document.getElementById("description").value,
         data: JSON.stringify(toSend),
         algoID: document.getElementById("algorithm").value,
-        userID: uname
+        user: uname
     }));
     xhr.onload = function(){
         temp = JSON.parse(xhr.response)
         if(temp.statusCode == 200){
             console.log("Valid Problem Instance")
-            // location.href = "home.html";
+            location.href = "home.html";
         }
         else{
             alert("Invalid Problem Instance")
